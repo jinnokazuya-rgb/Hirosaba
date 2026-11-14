@@ -44,7 +44,7 @@ function currentHourKey(){return String(new Date().getHours()).padStart(2,'0')+'
 function timeSummary(r,type){let arr=type==='skip'?r.dailySkipTimes:r.dailyManualTimes,count=type==='skip'?r.dailySkip:r.dailyManual;if(!count)return '—';let known=arr.slice(0,count);let missing=Math.max(0,count-known.length);return known.concat(missing?Array(missing).fill('時刻未記録'):[]).join(' / ')}
 
 
-function overallBest(m,key){let r=(m.days||{})[key]||{};return Math.max(Number(r.topScore)||0,weeklyBestThrough(m,key))}
+
 function weeklyScoreFields(m,key){let w=weekRecForKey(m,fmtKey(weekMondayForDate(gameDateObj(key))));return (w.weeklyDates||[]).slice(0,w.weekly).map((date,n)=>date===key?`<label style="display:flex;align-items:center;gap:6px;margin:5px 0;font-size:12px">週${n+1}回目 <input type="number" min="0" step="1" inputmode="numeric" placeholder="更新なし" value="${w.weeklyScores[n]?.score??''}" style="width:120px;padding:6px;border:1px solid #cbd5e1;border-radius:8px" onchange="setWeeklyScore(${data.indexOf(m)},${n},this.value)"></label>`:'').join('')}
 function setWeeklyScore(i,n,value){let m=data[i],w=weekRec(m);if(n>=w.weekly)return;if(value!==''&&(!/^\\d+$/.test(value)||!Number.isSafeInteger(Number(value)))){alert('0以上の整数で入力してください');render();return}w.weeklyScores[n]={date:w.weeklyDates[n]||dkey(),score:value===''?null:Number(value)};syncCurrentScore(m);persist()}
 function weeklyDateSummary(w){if(!w.weekly)return '—';let a=(w.weeklyDates||[]).slice(0,w.weekly),missing=Math.max(0,w.weekly-a.length);return a.concat(missing?Array(missing).fill('日時未記録'):[]).join('・')}
