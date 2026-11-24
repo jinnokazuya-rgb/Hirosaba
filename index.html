@@ -137,7 +137,7 @@ window.addEventListener('resize',updateStickyHeaderHeight);
 updateStickyHeaderHeight();
 </script><script>
 (()=>{
-const pad=document.createElement('section');pad.id='scorePad';pad.hidden=true;pad.innerHTML='<div id="padLabel"></div><div id="padValue"></div><div class="padgrid">'+['7','8','9','4','5','6','1','2','3','全消去','0','⌫'].map(k=>'<button type="button" data-key="'+k+'">'+k+'</button>').join('')+'</div><div class="padactions"><button type="button" data-key="cancel">取消</button><button type="button" data-key="done">確定</button><button type="button" data-key="next" class="primary">次へ →</button></div>';document.body.append(pad);
+const pad=document.createElement('section');pad.id='scorePad';pad.hidden=true;pad.innerHTML='<div id="padLabel"></div><div id="padValue"></div><div class="padgrid">'+['1','2','3','4','5','6','7','8','9','全消去','0','⌫'].map(k=>'<button type="button" data-key="'+k+'">'+k+'</button>').join('')+'</div><div class="padactions"><button type="button" data-key="cancel">取消</button><button type="button" data-key="done">確定</button><button type="button" data-key="next" class="primary">次へ →</button></div>';document.body.append(pad);
 let target=null,value='',fresh=true;
 const fields=()=>Array.from(document.querySelectorAll('[data-score-keypad]')).filter(e=>e.getClientRects().length&&!e.disabled);
 const keyOf=e=>e.id||e.getAttribute('onchange')||'';
